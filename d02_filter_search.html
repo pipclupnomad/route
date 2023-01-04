@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>filter search</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+
+<body ng-app="myAPP">
+    <div class="container" ng-controller="conSearch">
+        <h2>filter search</h2>
+        <hr>
+        Enter name:
+        <input type="text" name="" id="" ng-model="srName" placeholder="input name">
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <td>NO.</td>
+                    <td>ID</td>
+                    <td>NAME</td>
+                    <td>GENDER</td>
+                    <td>FINAL MARK</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="x in ds | filter : {name:srName}">
+                    <td>{{$index+1}}</td>
+                    <td>{{x.id}}</td>
+                    <td>{{x.name}}</td>
+                    <td>{{x.gender}}</td>
+                    <td>{{x.mark}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        //1. khoi tao ung dung angularJS
+        let app = angular.module("myAPP", []);
+        //2. lap trinh cho controller conSearch
+        app.controller("conSearch", function ($scope) {
+            //2.1 khai bao va khoi tao mang json chua ds sinh vien bao gom ma so, ten, gioi tinh, diem KQ.
+            $scope.ds = [
+                { "id": "S1", "name": "nguyen huu kien", "gender": "nam", "mark": 75 },
+                { "id": "S2", "name": "do ngoc duy", "gender": "nam", "mark": 57 },
+                { "id": "S3", "name": "tran thi diem quynh", "gender": "nu", "mark": 69 },
+                { "id": "S4", "name": "pham thi diem my", "gender": "nu", "mark": 96 },
+                { "id": "S5", "name": "ngo nguyen duy khang", "gender": "nam", "mark": 40 },
+                { "id": "S6", "name": "tran thien nhan", "gender": "nam", "mark": 90 },
+                { "id": "S7", "name": "huynh tan anh", "gender": "nam", "mark": 40 },
+                { "id": "S8", "name": "dang nguyen thien khanh", "gender": "nu", "mark": 70 },
+            ];
+        });
+    </script>
+</body>
+
+</html>
